@@ -405,12 +405,16 @@ Note: {if*rolename*} and {ifmin*rolename*} type tags are based on role archetype
 * {ifadmin}{/ifadmin} : Will display the enclosed content only if the user is logged in as an administrator.
 * {ifcustomrole roleshortname}{/ifcustomrole} : Will display enclosed content only if the user has the custom role specified by its shortname within the current context.
 * {ifnotcustomrole roleshortname}{/ifnotcustomrole} : Will display enclosed content only if the user does not have the custom role specified by its shortname within the current context.
-* {ifincohort CohortID|idnumber}{/ifincohort} : Will display enclosed content only if user is a member of the specified cohort. You can specify the Cohort ID in your cohort settings or its ID number. Cohort ID can contain a combination of letters from a to z, A to Z, numbers 0 to 9 and underscores. It will not work if it contains spaces, dashes or other special characters.
+* {ifincohort CohortID|idnumber, ...}{/ifincohort} : Will display enclosed content only if user is a member of the specified cohort. You can specify the Cohort ID in your cohort settings or its ID number. Cohort ID can contain a combination of letters from a to z, A to Z, numbers 0 to 9 and underscores. It will not work if it contains spaces, dashes or other special characters. You can specify multiple values ​​separated by commas, listing IDs and ID numbers together.
 * {ifnotincohort CohortID|idnumber}{/ifnotincohort} : Will display enclosed content only if user is NOT a member of the specified cohort. You can specify the Cohort ID in your cohort settings or its ID number. Cohort ID can contain a combination of letters from a to z, A to Z, numbers 0 to 9 and underscores. It will not work if it contains spaces, dashes or other special characters.
 * {ifhasarolename roleshortname}{/ifhasarolename}: Will display enclosed contnet if the user has the specified role anywhere on the site. This conditional tag works with role shortnames, not role archtypes. It is **not** context sensitive.
 
 #### Miscellanious
 
+* {iftime before|after="datetime"}{/iftime} : Will only display the content if current time before or after specific datetime. Datetime format is unixtime or any other format, that can be supported by function `strtotime`. You can use `before` and `after` simultaneously.
+* {ifenrolcourse id}{/ifenrolcourse} : Will only display the content if user is enrolled in the course with specific id. It works anywhere, not only in the current course.
+* {ifuserid id1,id2...}{/ifuserid} : Will only display the content for user or users with specific id. It can be seperated by comma
+* {ifusername name1,name2...}{/ifusername} : Will only display the content for user or users with specific username. It can be seperated by comma
 * {ifdev}{/ifdev} : Will display the enclosed content only if the user is logged in as an administrator and developer debugging mode is enabled.
 * {ifhome}{/ifhome} : Will display the enclosed content only if the user is on the Moodle Home Frontpage.
 * {ifnothome}{/ifnothome} : Will not display the enclosed content if the user is on the Moodle Home Frontpage.
@@ -1355,9 +1359,14 @@ Create a Page on your Moodle site, preferably in a course, so that those tags wo
 * If in a section of a course [{ifinsection}]Yes[{/ifinsection}][{ifnotinsection}]No[{/ifnotinsection}]? {ifinsection}Yes{/ifinsection}{ifnotinsection}No{/ifnotinsection}
 * If Request a course is enabled [{ifcourserequests}]Yes[{/ifcourserequests}]? {ifcourserequests}Yes{/ifcourserequests}
 * Are you a member of the "moodlers" cohort [{ifincohort moodlers}]Yes[{/ifincohort}]? {ifincohort moodlers}Yes{/ifincohort} (will be blank of not a member of cohort)
+* Are you a member of the "moodlers" cohort or cohort with ID=9 [{ifincohort moodlers,9}]Yes[{/ifnotincohort}]? {ifincohort moodlers,9}Yes{/ifincohort} (will be blank of a member of cohort)
 * Are you not a member of the "moodlers" cohort [{ifnotincohort moodlers}]Yes[{/ifnotincohort}]? {ifnotincohort moodlers}Yes{/ifnotincohort} (will be blank of a member of cohort)
 * [{ifhasarolename teacher}]This is a special message just for teachers.[{ifhasarolename}]: {ifhasarolename teacher}This is a special message just for teachers.{ifhasarolename}
 * Viewing in: [{ifmobile}]Browser[{/ifmobile}][{ifmobile}]Mobile App[{/ifmobile}]: Viewing in: {ifmobile}Browser{/ifmobile}{ifmobile}Mobile App{/ifmobile}
+* Are you a user with ID=2? [{ifuserid 2}]Yes[{/ifuserid}]? {ifuserid 2}Yes{/ifuserid} (will be blank if id doesn't matches your userid)
+* Are you a user with ID=2 or 3? [{ifuserid 2,3}]Yes[{/ifuserid}]? {ifuserid 2,3}Yes{/ifuserid} (will be blank if none of ids doesn't matches your userid)
+* Are you a user with username 'admin'? [{ifusername admin}]Yes[{/ifusername}]? {ifusername admin}Yes{/ifusername} (will be blank if it doesn't matches your username)
+* Are you a user with username 'admin' or 'coolnick'? [{ifusername admin,coolnick}]Yes[{/ifusername}]? {ifusername admin,coolnick}Yes{/ifusername} (will be blank if none of names doesn't matches your username)
 * Is your tenant id 1? [{iftenant 1}]Yes[{/iftenant}]: {iftenant 1}Yes{/iftenant} Note: In Moodle classic, tenant id is assumed to be 1.
 * Is this Moodle Workplace? [{ifworkplace}]Yes[{/ifworkplace}]: {ifworkplace}Yes{/ifworkplace}
 * This is FilterCodes version [{filtercodes}]: {filtercodes} (It be blank if you do not have the Moodle capability to edit this tag.)
@@ -1369,6 +1378,9 @@ Create a Page on your Moodle site, preferably in a course, so that those tags wo
 * Are you in an activity? [{ifinactivity}]Yes[{/ifinactivity}][{ifnotinactivity}]No[{/ifnotinactivity}]: {ifinactivity}Yes{/ifinactivity}{ifnotinactivity}No{/ifnotinactivity}
 * [{ifactivitycompleted 2}]You have completed the activity with ID 2.[{/ifactivitycompleted}]: {ifactivitycompleted id}You have completed the activity with ID 2.{/ifactivitycompleted} (example assumes you have an activity in a course with an ID of 2)
 * [{ifnotactivitycompleted 2}]You have NOT completed activity with ID 2.[{/ifnotactivitycompleted}]: {ifnotactivitycompleted id}You have completed activity with ID 2.{/ifnotactivitycompleted} (example assumes you have an activity in a course with an ID of 2)
+* [{iftime before="2026-11-01 23:59:59"}] Current date&time is before 2026-11-01 23:59:59.[{/iftime}]: {iftime before="2026-11-01 23:59:59"}Current date&time is before 2026-11-01 23:59:59.{/iftime}
+* [{iftime after="2026-10-15"}] Current date&time is after 2026-10-15.[{/iftime}]: {iftime after="2026-10-15"}Current date&time is after 2026-10-15.{/iftime}
+* [{iftime after="2026-10-01" before="2026-10-10"}]This message is visible strictly from October 1 to October 10, 2026.[{/iftime}]: {iftime after="2026-10-01" before="2026-10-10"}This message is visible strictly from October 1 to October 10, 2026.{/iftime}
 * It is now [{now}]: {now}
 * It is now [{now backupnameformat}]: {now backupnameformat}
 * It is now [{now strftimedate}]: {now strftimedate}

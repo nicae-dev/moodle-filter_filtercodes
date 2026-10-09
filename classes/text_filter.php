@@ -76,7 +76,7 @@ class text_filter extends \filtercodes_base_text_filter {
                 foreach (get_archetype_roles($archetype) as $role) {
                     $roleids[] = $role->id;
                 }
-                self::$archetyperoles[$archetype] = (object)['level' => $level, 'roleids' => $roleids];
+                self::$archetyperoles[$archetype] = (object) ['level' => $level, 'roleids' => $roleids];
             }
         }
     }
@@ -321,7 +321,7 @@ class text_filter extends \filtercodes_base_text_filter {
         foreach ($fields as $field) {
             // Skip fields that don't exist (likely a typo).
             if (isset($user->$field)) {
-                $profilefields[$field] = (object)['shortname' => $field, 'visible' => '1',
+                $profilefields[$field] = (object) ['shortname' => $field, 'visible' => '1',
                     'datatype' => 'text', 'value' => $user->$field];
             }
         }
@@ -481,13 +481,13 @@ class text_filter extends \filtercodes_base_text_filter {
                     <a href="' . $url . '" class="text-white h-100">
                     <div class="card-img" style="background-image: url(' . $imgurl . ');height:100px;"></div>
                     <div class="card-img-overlay card-title pt-1 pr-3 pb-1 pl-3 m-0" '
-                        . 'style="height:fit-content;top:auto;background-color:rgba(0,0,0,.4);color:#ffffff;'
-                        . 'text-shadow:-1px -1px 0 #767676, 1px -1px 0 #767676, -1px 1px 0 #767676, 1px 1px 0 #767676">'
-                        . $category->name . '</div>';
+                . 'style="height:fit-content;top:auto;background-color:rgba(0,0,0,.4);color:#ffffff;'
+                . 'text-shadow:-1px -1px 0 #767676, 1px -1px 0 #767676, -1px 1px 0 #767676, 1px 1px 0 #767676">'
+                . $category->name . '</div>';
         } else {
             $html = '<li class="card shadow mr-4 mb-4 ml-0 fc-categorycard-' . $category->id .
-                    '" style="min-width:350px;max-width:350px;' . $dimmed . '">' .
-                    '<a href="' . $url . '" class="text-decoration-none h-100 p-4">' . $category->name;
+                '" style="min-width:350px;max-width:350px;' . $dimmed . '">' .
+                '<a href="' . $url . '" class="text-decoration-none h-100 p-4">' . $category->name;
         }
         $html .= '</a></li>' . PHP_EOL;
         return $html;
@@ -549,12 +549,12 @@ class text_filter extends \filtercodes_base_text_filter {
             } else { // Previous to Moodle 3.11.
                 foreach ($coursefiles as $file) {
                     if ($isimage = $file->is_valid_image()) {
-                            // The file_encode_url() function is deprecated as per MDL-31071 but still in wide use.
-                            $imgurl = file_encode_url("/pluginfile.php", '/' . $file->get_contextid() . '/'
-                                    . $file->get_component() . '/' . $file->get_filearea() . $file->get_filepath()
-                                    . $file->get_filename(), !$isimage);
-                            $imgurl = (new \moodle_url($imgurl))->out();
-                            break;
+                        // The file_encode_url() function is deprecated as per MDL-31071 but still in wide use.
+                        $imgurl = file_encode_url("/pluginfile.php", '/' . $file->get_contextid() . '/'
+                            . $file->get_component() . '/' . $file->get_filearea() . $file->get_filepath()
+                            . $file->get_filename(), !$isimage);
+                        $imgurl = (new \moodle_url($imgurl))->out();
+                        break;
                     }
                 }
             }
@@ -569,10 +569,10 @@ class text_filter extends \filtercodes_base_text_filter {
                     <div class="card shadow mr-4 mb-4 ml-1  fc-coursecard-card" style="min-width:300px;max-width:300px;">
                         <a href="' . $courseurl . '" class="text-normal h-100">
                         <div class="card-img-top" style="background-image:url(' . $imgurl
-                                . ');height:100px;max-width:300px;padding-top:50%;background-size:cover;'
-                                . 'background-repeat:no-repeat;background-position:center;"></div>
+                        . ');height:100px;max-width:300px;padding-top:50%;background-size:cover;'
+                        . 'background-repeat:no-repeat;background-position:center;"></div>
                         <div class="card-title pt-1 pr-3 pb-1 pl-3 m-0"><span class="sr-only">' . get_string('course') . ': </span>'
-                                . $course->get_formatted_name() . '</div>
+                        . $course->get_formatted_name() . '</div>
                         </a>
                     </div>
                     ';
@@ -597,18 +597,18 @@ class text_filter extends \filtercodes_base_text_filter {
                                 <div class="card-body">
                                     <p class="card-text text-category" style="float:right">
                                         <small class="text-muted"><span class="sr-only">'
-                                            . get_string('category') . ': </span>' . $category .
-                                        '</small>
+                        . get_string('category') . ': </span>' . $category .
+                        '</small>
                                     </p>
                                     <h3 class="card-title">
                                         <a href="' . $courseurl . '" class="text-normal h-100">
                                             <span class="sr-only">' . get_string('course') . ': </span>'
-                                            . $course->get_formatted_name() .
-                                        '</a>
+                        . $course->get_formatted_name() .
+                        '</a>
                                     </h3>
                                     <div class="card-text text-summary"><span class="sr-only">'
-                                            . get_string('summary') . ': </span>' . $summary .
-                                    '</div>
+                        . get_string('summary') . ': </span>' . $summary .
+                        '</div>
                                 </div>
                             </div>
                         </div>
@@ -662,11 +662,11 @@ class text_filter extends \filtercodes_base_text_filter {
                         <thead>
                             <tr>
                                 <th scope="col" class="col-12 col-md-3 d-block d-md-table-cell">'
-                                    . get_string('course') . '</th>
+                    . get_string('course') . '</th>
                                 <th scope="col" class="col-12 col-md-2 d-block d-md-table-cell">'
-                                    . get_string('category') . '</th>
+                    . get_string('category') . '</th>
                                 <th scope="col" class="col-12 col-md-7 d-block d-md-table-cell">'
-                                    . get_string('description') . '</th>
+                    . get_string('description') . '</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -703,7 +703,7 @@ class text_filter extends \filtercodes_base_text_filter {
 
         switch (true) {
             case $clinktype == 'email':
-                $link = '<a href="mailto:' . $user->email . '">'  . $name . '</a>';
+                $link = '<a href="mailto:' . $user->email . '">' . $name . '</a>';
                 break;
             case $clinktype == 'message':
                 $link = '<a href="' . (new \moodle_url('/message/index.php', ['id' => $user->id]))->out() . '">' . $name . '</a>';
@@ -759,10 +759,10 @@ class text_filter extends \filtercodes_base_text_filter {
             $course = $PAGE->course;
             $progresspercent = -1; // Disabled: -1.
             if (
-                    $course->enablecompletion == 1
-                    && isloggedin()
-                    && !isguestuser()
-                    && \context_system::instance() != 'page-site-index'
+                $course->enablecompletion == 1
+                && isloggedin()
+                && !isguestuser()
+                && \context_system::instance() != 'page-site-index'
             ) {
                 $progresspercent = (int) \core_completion\progress::get_course_progress_percentage($course);
             }
@@ -828,9 +828,9 @@ class text_filter extends \filtercodes_base_text_filter {
                     }
                     $menu .= '-###' . PHP_EOL;
                     $menu .= '-{getstring}course{/getstring}: {getstring:admin}coursemgmt{/getstring}|/course/management.php' .
-                            '?categoryid={categoryid}' . PHP_EOL;
+                        '?categoryid={categoryid}' . PHP_EOL;
                     $menu .= '-{getstring}course{/getstring}: {getstring}new{/getstring}|/course/edit.php' .
-                            '?category={categoryid}&returnto=topcat' . PHP_EOL;
+                        '?category={categoryid}&returnto=topcat' . PHP_EOL;
                     $menu .= '-{getstring}course{/getstring}: {getstring}searchcourses{/getstring}|/course/search.php' . PHP_EOL;
                 }
                 if ($this->hasminarchetype('editingteacher')) {
@@ -838,7 +838,7 @@ class text_filter extends \filtercodes_base_text_filter {
                         '?contextid={coursecontextid}' . PHP_EOL;
                     $menu .= '{ifincourse}' . PHP_EOL;
                     $menu .= '-{getstring}course{/getstring}: {getstring}backup{/getstring}|/backup/backup.php?id={courseid}' .
-                            PHP_EOL;
+                        PHP_EOL;
                     if (stripos($text, '{menucoursemore}') === false) {
                         $menu .= '-{getstring}course{/getstring}: {getstring}participants{/getstring}|/user/index.php?id={courseid}'
                             . PHP_EOL;
@@ -863,13 +863,13 @@ class text_filter extends \filtercodes_base_text_filter {
                 }
                 if (is_siteadmin() && !is_role_switched($PAGE->course->id)) { // If an administrator.
                     $menu .= '-{getstring}site{/getstring}: {getstring:admin}additionalhtml{/getstring}|/admin/settings.php' .
-                            '?section=additionalhtml' . PHP_EOL;
+                        '?section=additionalhtml' . PHP_EOL;
                     $menu .= '-{getstring}site{/getstring}: {getstring:admin}frontpage{/getstring}|/admin/settings.php' .
-                            '?section=frontpagesettings|Including site name' . PHP_EOL;
+                        '?section=frontpagesettings|Including site name' . PHP_EOL;
                     $menu .= '-{getstring}site{/getstring}: {getstring:admin}plugins{/getstring}|/admin/search.php#linkmodules' .
-                            PHP_EOL;
+                        PHP_EOL;
                     $menu .= '-{getstring}site{/getstring}: {getstring:admin}supportcontact{/getstring}|/admin/settings.php' .
-                            '?section=supportcontact' . PHP_EOL;
+                        '?section=supportcontact' . PHP_EOL;
 
                     if ($CFG->branch >= 404) {
                         $label = 'themesettingsadvanced';
@@ -895,7 +895,7 @@ class text_filter extends \filtercodes_base_text_filter {
                         }
                     }
                     $menu .= '-{getstring}site{/getstring}: {getstring}notifications{/getstring} ({getstring}admin{/getstring})' .
-                            '|/admin/index.php' . PHP_EOL;
+                        '|/admin/index.php' . PHP_EOL;
                 }
                 $replace['/\{menuadmin\}/i'] = $menu;
             }
@@ -993,7 +993,7 @@ class text_filter extends \filtercodes_base_text_filter {
                     $menu .= '-###' . PHP_EOL;
                     $menu .= '-Dev docs|https://moodle.org/development|Moodle.org ({getstring}english{/getstring})' . PHP_EOL;
                     $menu .= '-Dev forum|https://moodle.org/mod/forum/view.php?id=55|Moodle.org ({getstring}english{/getstring})' .
-                            PHP_EOL;
+                        PHP_EOL;
                     $menu .= '-Tracker|https://moodle.atlassian.net/jira/|Moodle.org ({getstring}english{/getstring})' . PHP_EOL;
                     $menu .= '-AMOS|https://lang.moodle.org/|Moodle.org ({getstring}english{/getstring})' . PHP_EOL;
                     $menu .= '-WCAG 2.2|https://www.w3.org/WAI/WCAG22/quickref/?versions=2.2&currentsidebar=%23col_customize'
@@ -1065,7 +1065,7 @@ class text_filter extends \filtercodes_base_text_filter {
                 $menu = '';
                 if (empty($_POST)) {
                     $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http")
-                    . "://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
+                        . "://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
                     $url .= (strpos($url, '?') ? '&' : '?');
 
                     // Get list of available languages.
@@ -1131,8 +1131,8 @@ class text_filter extends \filtercodes_base_text_filter {
                         $action = in_array($PAGE->course->id, $wishlist) ? 'remove' : 'add';
                         $url = (new \moodle_url('/filter/filtercodes/action.php', [
                             'courseid' => $PAGE->course->id,
-                            'action'   => $action,
-                            'sesskey'  => sesskey(),
+                            'action' => $action,
+                            'sesskey' => sesskey(),
                         ]))->out();
                         $menu .= '-' . get_string('wishlist_' . $action, 'filter_filtercodes') . '|' . $url . "\n";
                     }
@@ -1323,10 +1323,10 @@ class text_filter extends \filtercodes_base_text_filter {
                     case 'infoicon':
                         $info = get_string('info');
                         $prewrap = '<a class="btn btn-link p-0 m-0 align-baseline" role="button" data-container="body"'
-                                . ' data-toggle="popover" data-placement="right" data-content="<div class=&quot;no-overflow&quot;>'
-                                . '<p>';
+                            . ' data-toggle="popover" data-placement="right" data-content="<div class=&quot;no-overflow&quot;>'
+                            . '<p>';
                         $postwrap = '</p></div>" data-html="true" tabindex="0" data-trigger="focus"><i class="icon'
-                                . ' fa fa-info-circle text-info fa-fw " title="' . $info . '" aria-label="' . $info . '"></i></a>';
+                            . ' fa fa-info-circle text-info fa-fw " title="' . $info . '" aria-label="' . $info . '"></i></a>';
                         break;
                     case 'brief': // Show as text.
                         $prewrap = '<br><p class="smaller">';
@@ -1340,12 +1340,12 @@ class text_filter extends \filtercodes_base_text_filter {
 
                 // Prepare some strings.
                 $linksr = [
-                        '' => '',
-                        'email' => get_string('issueremail', 'badges'),
-                        'message' => get_string('message', 'message'),
-                        'profile' => get_string('profile'),
-                        'phone' => get_string('phone'),
-                        'mobile' => get_string('phone2'),
+                    '' => '',
+                    'email' => get_string('issueremail', 'badges'),
+                    'message' => get_string('message', 'message'),
+                    'profile' => get_string('profile'),
+                    'phone' => get_string('phone'),
+                    'mobile' => get_string('phone2'),
                 ];
                 if ($cardformat == 'verbose') {
                     if (empty($CFG->enablegravatar)) {
@@ -1359,9 +1359,9 @@ class text_filter extends \filtercodes_base_text_filter {
                             $cards .= '<img src="' . $blankavatarurl . '" class="img-fluid" width="150" height="150" alt="">';
                         } else {
                             $cards .= $OUTPUT->user_picture($user, [
-                                    'size' => '150',
-                                    'class' => 'img-fluid pull-left p-1 border mr-4',
-                                    'link' => false, 'visibletoscreenreaders' => false,
+                                'size' => '150',
+                                'class' => 'img-fluid pull-left p-1 border mr-4',
+                                'link' => false, 'visibletoscreenreaders' => false,
                             ]);
                         }
                         $cards .= format_string($user->description);
@@ -1378,14 +1378,14 @@ class text_filter extends \filtercodes_base_text_filter {
                             $cards .= '<img src="' . $blankavatarurl . '" class="img-fluid" width="250" height="250" alt="">';
                         } else {
                             $cards .= $OUTPUT->user_picture($user, [
-                                    'size' => '250',
-                                    'class' => 'img-fluid',
-                                    'link' => false,
-                                    'visibletoscreenreaders' => false,
-                                ]);
+                                'size' => '250',
+                                'class' => 'img-fluid',
+                                'link' => false,
+                                'visibletoscreenreaders' => false,
+                            ]);
                         }
                         $name = '<br><h3 class="h5 font-weight-bold d-inline">' . get_string('fullnamedisplay', null, $user) .
-                                '</h3>';
+                            '</h3>';
                         $cards .= $this->userlink($clinktype, $user, $name);
                         if (!empty($user->description) && !empty($cardformat)) {
                             $cards .= $prewrap . format_string($user->description) . $postwrap;
@@ -1748,6 +1748,7 @@ class text_filter extends \filtercodes_base_text_filter {
         static $mygroupslist;
         static $mygroupingslist;
         static $mycohorts;
+        static $mycourses; //efimova_vg
         static $cachedfilteruserid;
 
         // Reset user-specific cached data if the user has changed.
@@ -1758,6 +1759,7 @@ class text_filter extends \filtercodes_base_text_filter {
             $mygroupslist = null;
             $mygroupingslist = null;
             $mycohorts = null;
+            $mycourses = null;
         }
 
         // Clear cache in unit tests to ensure test isolation.
@@ -1772,6 +1774,7 @@ class text_filter extends \filtercodes_base_text_filter {
             $mygroupslist = null;
             $mygroupingslist = null;
             $mycohorts = null;
+            $mycourses = null;
         }
 
         $replace = []; // Array of key/value filterobjects.
@@ -2103,7 +2106,7 @@ class text_filter extends \filtercodes_base_text_filter {
             $coursecontext = \context_course::instance($course->id);
             $replace['/\{courseunenrolurl\}/i'] = '';
             if ($course->id != SITEID && $this->isauthenticateduser() && is_enrolled($coursecontext)) {
-                $plugins   = enrol_get_plugins(true);
+                $plugins = enrol_get_plugins(true);
                 $instances = enrol_get_instances($course->id, true);
                 foreach ($instances as $instance) {
                     if (!isset($plugins[$instance->enrol])) {
@@ -2905,7 +2908,7 @@ class text_filter extends \filtercodes_base_text_filter {
             // Parameters: None.
             if (stripos($text, '{username}') !== false) {
                 $replace['/\{username\}/i'] = isloggedin()
-                        && !isguestuser() ? $USER->username : get_string('defaultusername', 'filter_filtercodes');
+                    && !isguestuser() ? $USER->username : get_string('defaultusername', 'filter_filtercodes');
             }
 
             // These tags: {userpictureurl} and {userpictureimg}.
@@ -2991,8 +2994,8 @@ class text_filter extends \filtercodes_base_text_filter {
 
                 // Calculate if we are in separate groups.
                 $isseparategroups = ($PAGE->course->groupmode == SEPARATEGROUPS
-                        && $PAGE->course->groupmodeforce
-                        && !has_capability('moodle/site:accessallgroups', $PAGE->context));
+                    && $PAGE->course->groupmodeforce
+                    && !has_capability('moodle/site:accessallgroups', $PAGE->context));
 
                 // Get the user current group.
                 $thisgroup = $isseparategroups ? groups_get_course_group($PAGE->course) : null;
@@ -3118,7 +3121,7 @@ class text_filter extends \filtercodes_base_text_filter {
                             }
                             if ($cshowdesc && !empty($user->description)) {
                                 $contacts .= '<div' . (empty($cshowpic) ? ' class="mb-4"' : '') . '>' .
-                                        $user->description . '</div>';
+                                    $user->description . '</div>';
                             }
                             $contacts .= '</li>';
                         }
@@ -3129,7 +3132,7 @@ class text_filter extends \filtercodes_base_text_filter {
                     $replace['/\{coursecontacts\}/i'] = get_string('nocontacts', 'message');
                 } else {
                     $replace['/\{coursecontacts\}/i'] = '<ul class="fc-coursecontacts list-unstyled ml-0 pl-0">' .
-                            $contacts . '</ul>';
+                        $contacts . '</ul>';
                 }
                 unset($contacts, $contactsclose, $fullname, $url, $user, $rolenames, $icon, $iconclass);
                 unset($linksr, $clinktype, $cshowpic);
@@ -3175,7 +3178,7 @@ class text_filter extends \filtercodes_base_text_filter {
                         JOIN {role_assignments} ra ON ra.contextid = ctx.id AND ra.userid = ue.userid
                         JOIN {role} r ON r.id = ra.roleid AND r.shortname = 'student'
                         WHERE ue.status = 0 AND e.courseid = :courseid";
-                $cnt = (int)$DB->count_records_sql($sql, ['courseid' => $PAGE->course->id]);
+                $cnt = (int) $DB->count_records_sql($sql, ['courseid' => $PAGE->course->id]);
 
                 // Fallback: some test setups or unusual enrolment flows may not have role_assignments
                 // present. In that case, count distinct active enrolments as a safe fallback.
@@ -3184,7 +3187,7 @@ class text_filter extends \filtercodes_base_text_filter {
                         FROM {user_enrolments} ue
                         JOIN {enrol} e ON e.id = ue.enrolid
                         WHERE ue.status = 0 AND e.courseid = :courseid";
-                    $cnt = (int)$DB->count_records_sql($fallbacksql, ['courseid' => $PAGE->course->id]);
+                    $cnt = (int) $DB->count_records_sql($fallbacksql, ['courseid' => $PAGE->course->id]);
                 }
 
                 $replace['/\{coursecount students:active\}/i'] = $cnt;
@@ -3279,8 +3282,8 @@ class text_filter extends \filtercodes_base_text_filter {
                 if (stripos($text, '{courseprogress}') !== false) {
                     if ($progress != -1) { // Is enabled.
                         $replace['/\{courseprogress\}/i'] = '<span class="sr-only">'
-                                . get_string('aria:courseprogress', 'block_myoverview') . '</span> '
-                                . get_string('completepercent', 'block_myoverview', $progress);
+                            . get_string('aria:courseprogress', 'block_myoverview') . '</span> '
+                            . get_string('completepercent', 'block_myoverview', $progress);
                     } else {
                         $replace['/\{courseprogress\}/i'] = '';
                     }
@@ -3294,7 +3297,7 @@ class text_filter extends \filtercodes_base_text_filter {
                         $replace['/\{courseprogressbar\}/i'] = '
                             <div class="progress">
                                 <div class="progress-bar bar" role="progressbar" aria-valuenow="' . $progress
-                                    . '" style="width: ' . $progress . '%" aria-valuemin="0" aria-valuemax="100">
+                            . '" style="width: ' . $progress . '%" aria-valuemin="0" aria-valuemax="100">
                                 </div>
                             </div>';
                     } else {
@@ -3352,7 +3355,7 @@ class text_filter extends \filtercodes_base_text_filter {
                         $replace['/\{coursecards\}/i'] = !empty($content) ? $card->header . $content . $card->footer : '';
                     }
                     $replace['/\{coursecards ' . $catid . '\}/isuU'] =
-                            !empty($content) ? $card->header . $content . $card->footer : '';
+                        !empty($content) ? $card->header . $content . $card->footer : '';
                 }
             }
 
@@ -3381,7 +3384,7 @@ class text_filter extends \filtercodes_base_text_filter {
                     // Create cards for existing courses that are visible to user.
                     $content = $this->rendercoursecards($courseids, $card->format);
                     $replace['/\{coursecard ' . $match . '\}/isuU'] =
-                            !empty($content) ? $card->header . $content . $card->footer : '';
+                        !empty($content) ? $card->header . $content . $card->footer : '';
                 }
             }
 
@@ -3698,7 +3701,7 @@ class text_filter extends \filtercodes_base_text_filter {
                 $list = '';
                 foreach ($categories as $id => $name) {
                     $list .= '<li><a href="' .
-                            (new \moodle_url('/course/index.php', ['categoryid' => $id]))->out() . '">' . $name . '</a></li>';
+                        (new \moodle_url('/course/index.php', ['categoryid' => $id]))->out() . '">' . $name . '</a></li>';
                 }
                 $list = !empty($list) ? '<ul class="categorylist">' . $list . '</ul>' : '';
                 $replace['/\{categories\}/i'] = $list;
@@ -3775,7 +3778,7 @@ class text_filter extends \filtercodes_base_text_filter {
                         continue;
                     }
                     $list .= '-' . $this->format_custommenuitem($category->name)
-                         . '|/course/index.php?categoryid=' . $category->id . PHP_EOL;
+                        . '|/course/index.php?categoryid=' . $category->id . PHP_EOL;
                 }
                 $categories->close();
                 $replace['/\{categories0menu\}/i'] = $list;
@@ -3801,7 +3804,7 @@ class text_filter extends \filtercodes_base_text_filter {
                 $categories = $DB->get_recordset_sql($sql, ['contextcoursecat' => CONTEXT_COURSECAT]);
                 foreach ($categories as $category) {
                     $list .= '<li><a href="' . (new \moodle_url('/course/index.php', ['categoryid' => $category->id]))->out() . '">'
-                            . format_string($category->name) . '</a></li>' . PHP_EOL;
+                        . format_string($category->name) . '</a></li>' . PHP_EOL;
                 }
                 $list = !empty($list) ? '<ul>' . $list . '</ul>' : '';
                 $categories->close();
@@ -4019,19 +4022,19 @@ class text_filter extends \filtercodes_base_text_filter {
             $newtext = str_replace('{showmore}', '<span id="fc-showmore-tmp" class="fc-showmore hidden">', $text);
             if (stripos($newtext, 'fc-showmore-tmp') !== false) {
                 $newtext = preg_replace_callback('/fc-showmore-tmp/', function ($matches) {
-                        static $count = 0;
-                        return 'showmore-' . $count++;
+                    static $count = 0;
+                    return 'showmore-' . $count++;
                 }, $newtext);
                 $text = $newtext;
             }
             $newtext = str_replace('{/showmore}', '</span> <a href="#" class="fc-showmore" style="white-space: nowrap;" ' .
-                    'onclick="m=document.getElementById(\'fc-showmore-tmp\').classList;m.toggle(\'hidden\');' .
-                    'this.text=(m.contains(\'hidden\')?\'' . get_string('showmore', 'form') . '\':\'' .
-                    get_string('showless', 'form') . '\');return false;">' . get_string('showmore', 'form') . '</a>', $newtext);
+                'onclick="m=document.getElementById(\'fc-showmore-tmp\').classList;m.toggle(\'hidden\');' .
+                'this.text=(m.contains(\'hidden\')?\'' . get_string('showmore', 'form') . '\':\'' .
+                get_string('showless', 'form') . '\');return false;">' . get_string('showmore', 'form') . '</a>', $newtext);
             if (stripos($newtext, 'fc-showmore-tmp') !== false) {
                 $newtext = preg_replace_callback('/fc-showmore-tmp/', function ($matches) {
-                        static $count = 0;
-                        return 'showmore-' . $count++;
+                    static $count = 0;
+                    return 'showmore-' . $count++;
                 }, $newtext);
                 $text = $newtext;
             }
@@ -4100,6 +4103,52 @@ class text_filter extends \filtercodes_base_text_filter {
 
         if (strpos($text, '{if') !== false) { // If there are conditional tags.
             require_once($CFG->libdir . '/completionlib.php');
+
+            // Tag: {iftime after="..." before="..."}...{/iftime}
+            // Description: Will display content based on single or combined date/time conditions.
+            // Parameters: after="..." and/or before="..." (supports timestamps or dates).
+            if (stripos($text, '{iftime ') !== false) {
+                $newtext = preg_replace_callback(
+                    '/\{iftime\s+([^>]+)\}(.*)\{\/iftime\}/isuU',
+                    function ($matches) {
+                        $attributes_string = $matches[1];
+                        $content = $matches[2];
+                        $current_time = time();
+
+                        // Парсим атрибуты (after и before) из строки
+                        $after_match = [];
+                        $before_match = [];
+
+                        preg_match('/after=["\']([^"\']+)["\']/', $attributes_string, $after_match);
+                        preg_match('/before=["\']([^"\']+)["\']/', $attributes_string, $before_match);
+
+                        // Проверяем условие AFTER (если оно задано)
+                        if (!empty($after_match)) {
+                            $after_time = is_numeric($after_match[1]) ? (int) $after_match[1] : strtotime($after_match[1]);
+                            if ($after_time === false || $current_time < $after_time) {
+                                return ''; // Не наступило время показа
+                            }
+                        }
+
+                        // Проверяем условие BEFORE (если оно задано)
+                        if (!empty($before_match)) {
+                            $before_time = is_numeric($before_match[1]) ? (int) $before_match[1] : strtotime($before_match[1]);
+                            if ($before_time === false || $current_time > $before_time) {
+                                return ''; // Время показа уже прошло
+                            }
+                        }
+
+                        // Если все проверки пройдены, выводим контент
+                        return $content;
+                    },
+                    $text
+                );
+                if ($newtext !== false) {
+                    $text = $newtext;
+                }
+            }
+
+            // efimova_vg ends
 
             // Tag: {ifinactivity}...{/ifinactivity}.
             // Description: Will display content if the tag is in an activity.
@@ -4404,11 +4453,114 @@ class text_filter extends \filtercodes_base_text_filter {
                 }
             }
 
+            // --- efimova_vg ВАШ КОД---
+            // Tag: {ifenrolcourse id|idnumber}...{/ifenrolcourse}.
+            // Description: Will display content if the user is enrolled in the specified course.
+            // Parameters: id or id number of the course.
+            // Requires content between tags.
+            if (stripos($text, '{ifenrolcourse ') !== false) {
+                if (empty($mycourses)) { // Cache list of user courses.
+                    $mycourses = enrol_get_users_courses($USER->id, true, 'id,idnumber'); //@todo закешировать
+                }
+                $newtext = preg_replace_callback(
+                    '/\{ifenrolcourse ([\w\-]*)\}(.*)\{\/ifenrolcourse\}/isuU',
+                    function ($matches) use ($mycourses) {
+                        foreach ($mycourses as $course) {
+                            if ($course->idnumber == $matches[1] || $course->id == $matches[1]) {
+                                return ($matches[2]);
+                            }
+                        }
+                        return '';
+                    },
+                    $text
+                );
+                if ($newtext !== false) {
+                    $text = $newtext;
+                }
+            }
+
+            // Tag: {ifuserid 123,456}...{/ifuserid}.
+            // Description: Will display content if the user ID matches the specified IDs (comma-separated).
+            // Parameters: One or more user IDs separated by commas.
+            if (stripos($text, '{ifuserid ') !== false) {
+                $newtext = preg_replace_callback(
+                    '/\{ifuserid ([\w\-,]*)\}(.*)\{\/ifuserid\}/isuU',
+                    function ($matches) use ($USER) {
+                        // Разбираем строку ID в массив и удаляем случайные пробелы вокруг элементов
+                        $allowed_ids = array_map('trim', explode(',', $matches[1]));
+
+                        if (in_array((string) $USER->id, $allowed_ids)) {
+                            return $matches[2];
+                        }
+                        return '';
+                    },
+                    $text
+                );
+                if ($newtext !== false) {
+                    $text = $newtext;
+                }
+            }
+
+            // Tag: {ifusername st1,st2,st3}...{/ifusername}.
+            // Description: Will display content if the username matches the specified usernames (comma-separated).
+            // Parameters: One or more usernames separated by commas.
+            if (stripos($text, '{ifusername ') !== false) {
+                $newtext = preg_replace_callback(
+                    '/\{ifusername ([\w\-,]*)\}(.*)\{\/ifusername\}/isuU',
+                    function ($matches) use ($USER) {
+                        // Разбираем логины в массив, приводим к нижнему регистру и удаляем пробелы
+                        $allowed_usernames = array_map('trim', explode(',', strtolower($matches[1])));
+                        $current_username = strtolower($USER->username);
+
+                        if (in_array($current_username, $allowed_usernames)) {
+                            return $matches[2];
+                        }
+                        return '';
+                    },
+                    $text
+                );
+                if ($newtext !== false) {
+                    $text = $newtext;
+                }
+            }
+
+            // Tag: {ifincohort idname|idnumber,id2,id3}...{/ifincohort}.
+            // Description: Will display content if the user is part of any of the specified cohorts (comma-separated).
+            // Parameters: id names or id numbers of the cohorts separated by commas.
+            // Requires content between tags.
+            if (stripos($text, '{ifincohort ') !== false) {
+                if (empty($mycohorts)) { // Cache list of cohorts.
+                    require_once($CFG->dirroot . '/cohort/lib.php');
+                    $mycohorts = cohort_get_user_cohorts($USER->id);
+                }
+                $newtext = preg_replace_callback(
+                    '/\{ifincohort ([\w\-,\s]*)\}(.*)\{\/ifincohort\}/isuU',
+                    function ($matches) use ($mycohorts) {
+                        // Разбираем переданные когорты в массив и очищаем от пробелов
+                        $allowed_cohorts = array_map('trim', explode(',', $matches[1]));
+
+                        foreach ($mycohorts as $cohort) {
+                            // Проверяем совпадение текущей когорты пользователя со списком разрешенных
+                            if (in_array((string) $cohort->idnumber, $allowed_cohorts) || in_array((string) $cohort->id, $allowed_cohorts)) {
+                                return $matches[2]; // Если совпало хотя бы одно условие, возвращаем контент
+                            }
+                        }
+                        return '';
+                    },
+                    $text
+                );
+                if ($newtext !== false) {
+                    $text = $newtext;
+                }
+            }
+
+            // --- КОНЕЦ ВАШЕГО КОДА ---
+
             // Tag: {ifincohort idname|idnumber}...{/ifincohort}.
             // Description: Will display content if the user is part of the specified cohort.
             // Parameters: id name or id number of the cohort.
             // Requires content between tags.
-            if (stripos($text, '{ifincohort ') !== false) {
+            /*if (stripos($text, '{ifincohort ') !== false) {
                 if (empty($mycohorts)) { // Cache list of cohorts.
                     require_once($CFG->dirroot . '/cohort/lib.php');
                     $mycohorts = cohort_get_user_cohorts($USER->id);
@@ -4428,7 +4580,8 @@ class text_filter extends \filtercodes_base_text_filter {
                 if ($newtext !== false) {
                     $text = $newtext;
                 }
-            }
+            }*/
+
 
             // Tag: {ifnotincohort idname|idnumber}...{/ifnotincohort}.
             // Description: Will display content if the user is not part of the specified cohort.
@@ -5314,7 +5467,7 @@ class text_filter extends \filtercodes_base_text_filter {
                         $html = '
                         <div class="progress mb-0">
                             <div class="fc-progress progress-bar bar" role="progressbar" aria-valuenow="' . $value
-                                . '" style="width: ' . $value . '%" aria-valuemin="0" aria-valuemax="100">
+                            . '" style="width: ' . $value . '%" aria-valuemin="0" aria-valuemax="100">
                             </div>
                         </div>';
                         if (!empty($title)) {
@@ -5406,9 +5559,9 @@ class text_filter extends \filtercodes_base_text_filter {
                 $help = get_string('help');
                 if ($CFG->branch >= 500) {
                     $helpwrapper[0] = '<a class="btn btn-link p-0" role="button" data-bs-container="body" data-bs-toggle="popover"'
-                            . ' data-bs-placement="right" data-bs-content="<div class=&quot;no-overflow&quot;><p>';
+                        . ' data-bs-placement="right" data-bs-content="<div class=&quot;no-overflow&quot;><p>';
                     $helpwrapper[1] = '</p></div>" data-bs-html="true" tabindex="0" data-bs-trigger="focus"><i class="icon'
-                            . ' fa fa-circle-question text-info fa-fw " title="' . $help . '" aria-label="' . $help . '"></i></a>';
+                        . ' fa fa-circle-question text-info fa-fw " title="' . $help . '" aria-label="' . $help . '"></i></a>';
                 } else {
                     $helpwrapper[0] = '<a class="btn btn-link p-0" role="button" data-container="body" data-toggle="popover"'
                         . ' data-placement="right" data-content="<div class=&quot;no-overflow&quot;><p>';
